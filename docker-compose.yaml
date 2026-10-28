@@ -1,0 +1,24 @@
+services:
+  python-img:
+    build: .
+    container_name: python-container
+    volumes:
+      - ./:/app
+    environment:
+      - PORT=8000
+    ports:
+      - "8000:8000"
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mydb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
